@@ -14,7 +14,7 @@ const HomeBanner = () => {
                     <Image
                     src='/banner-image.png'
                         fill
-                        all="Banner Image"
+                        alt="Banner Image"
                         className="object-contain"
                     />
                 </div>
