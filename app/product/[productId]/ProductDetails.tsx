@@ -115,7 +115,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                     onClick={()=>{}}
                     />
                 </div>
-            P</div>
+            </div>
         </div>
     );
 }
