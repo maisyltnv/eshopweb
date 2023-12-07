@@ -1,5 +1,6 @@
 "use client";
 import SetColor from "@/app/components/products/SetColor";
+import SetQuantity from "@/app/components/products/SetQuantity";
 import { Rating } from "@mui/material";
 import React, { useCallback, useState } from 'react';
 
@@ -47,9 +48,25 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     const handleColorSelect = useCallback((value: SelectedImgType) => {
         setCartProduct((prev) => {
             return { ...prev, selectedImg: value };
+        });
+    }, [CartProduct.selectedImg]);
+
+    const handleQtyIncrease = useCallback(() => { 
+        if(CartProduct.quantity === 99){
+            return;
+        }
+        setCartProduct((prev)=>{
+            return {...prev,quantity:++prev.quantity}
         })
-    },
-        [CartProduct.selectedImg]);
+    }, [])
+    const handleQtyDecrease = useCallback(() => {
+        if(CartProduct.quantity === 1){
+            return;
+        }
+        setCartProduct((prev)=>{
+            return {...prev,quantity:--prev.quantity}
+        })
+     }, [])
 
     return (
         <div className="grid grid-cols-1
@@ -84,7 +101,10 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
                     cartProduct={CartProduct}
                 />
                 <Horizontal />
-                <div>quantity</div>
+                <SetQuantity cartProduct={CartProduct}
+                    handleQtyIncrease={handleQtyIncrease}
+                    handleQtyDecrease={handleQtyDecrease}
+                />
                 <Horizontal />
                 <div>add to card</div>
             </div>
